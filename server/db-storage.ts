@@ -1,0 +1,190 @@
+// Database storage implementation
+import { eq, desc, like, and, inArray, between, sql } from "drizzle-orm";
+import { db } from "./db";
+import { users, memories, memoryPrompts, memoryShares } from "@shared/schema";
+import type { IStorage } from "./storage";
+import type { User, InsertUser, Memory, InsertMemory, MemoryPrompt, InsertMemoryPrompt, MemoryShare, InsertMemoryShare } from "@shared/schema";
+
+export class DatabaseStorage implements IStorage {
+  
+  // User operations
+  async getUser(id: string): Promise<User | undefined> {
+    const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+    return result[0];
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const result = await db.select().from(users).where(eq(users.email, email)).limit(1);
+    return result[0];
+  }
+
+  async createUser(user: InsertUser): Promise<User> {
+    const result = await db.insert(users).values(user).returning();
+    return result[0];
+  }
+
+  async updateUser(id: string, user: Partial<InsertUser>): Promise<User | undefined> {
+    const result = await db.update(users).set(user).where(eq(users.id, id)).returning();
+    return result[0];
+  }
+
+  // Memory operations
+  async getMemory(id: string): Promise<Memory | undefined> {
+    const result = await db.select().from(memories).where(eq(memories.id, id)).limit(1);
+    return result[0];
+  }
+
+  async getMemoriesByUser(userId: string, limit = 50, offset = 0): Promise<Memory[]> {
+    const result = await db
+      .select()
+      .from(memories)
+      .where(eq(memories.userId, userId))
+      .orderBy(desc(memories.date))
+      .limit(limit)
+      .offset(offset);
+    return result;
+  }
+
+  async createMemory(memory: InsertMemory): Promise<Memory> {
+    const result = await db.insert(memories).values({
+      ...memory,
+      updatedAt: new Date(),
+    }).returning();
+    return result[0];
+  }
+
+  async updateMemory(id: string, memory: Partial<InsertMemory>): Promise<Memory | undefined> {
+    const result = await db.update(memories).set({
+      ...memory,
+      updatedAt: new Date(),
+    }).where(eq(memories.id, id)).returning();
+    return result[0];
+  }
+
+  async deleteMemory(id: string): Promise<boolean> {
+    const result = await db.delete(memories).where(eq(memories.id, id));
+    return result.rowCount > 0;
+  }
+
+  // Memory filtering
+  async getMemoriesByEmotion(userId: string, emotion: string): Promise<Memory[]> {
+    const result = await db
+      .select()
+      .from(memories)
+      .where(and(
+        eq(memories.userId, userId),
+        eq(memories.emotion, emotion)
+      ))
+      .orderBy(desc(memories.date));
+    return result;
+  }
+
+  async getMemoriesByLocation(userId: string, location: string): Promise<Memory[]> {
+    const result = await db
+      .select()
+      .from(memories)
+      .where(and(
+        eq(memories.userId, userId),
+        like(memories.location, `%${location}%`)
+      ))
+      .orderBy(desc(memories.date));
+    return result;
+  }
+
+  async getMemoriesByPeople(userId: string, people: string[]): Promise<Memory[]> {
+    const result = await db
+      .select()
+      .from(memories)
+      .where(and(
+        eq(memories.userId, userId),
+        sql`${memories.people} && ${people}` // PostgreSQL array overlap operator
+      ))
+      .orderBy(desc(memories.date));
+    return result;
+  }
+
+  async getMemoriesByDateRange(userId: string, startDate: Date, endDate: Date): Promise<Memory[]> {
+    const result = await db
+      .select()
+      .from(memories)
+      .where(and(
+        eq(memories.userId, userId),
+        between(memories.date, startDate, endDate)
+      ))
+      .orderBy(desc(memories.date));
+    return result;
+  }
+
+  async searchMemories(userId: string, query: string): Promise<Memory[]> {
+    const result = await db
+      .select()
+      .from(memories)
+      .where(and(
+        eq(memories.userId, userId),
+        sql`(
+          ${memories.content} ILIKE ${`%${query}%`} OR
+          ${memories.transcript} ILIKE ${`%${query}%`} OR
+          ${memories.location} ILIKE ${`%${query}%`} OR
+          ${memories.emotion} ILIKE ${`%${query}%`}
+        )`
+      ))
+      .orderBy(desc(memories.date));
+    return result;
+  }
+
+  // Memory prompts
+  async getMemoryPrompts(category?: string): Promise<MemoryPrompt[]> {
+    const query = db.select().from(memoryPrompts).where(eq(memoryPrompts.isActive, true));
+    
+    if (category) {
+      const result = await query.where(and(
+        eq(memoryPrompts.isActive, true),
+        eq(memoryPrompts.category, category)
+      ));
+      return result;
+    }
+    
+    const result = await query;
+    return result;
+  }
+
+  async getRandomPrompt(): Promise<MemoryPrompt | undefined> {
+    const result = await db
+      .select()
+      .from(memoryPrompts)
+      .where(eq(memoryPrompts.isActive, true))
+      .orderBy(sql`RANDOM()`)
+      .limit(1);
+    return result[0];
+  }
+
+  async createMemoryPrompt(prompt: InsertMemoryPrompt): Promise<MemoryPrompt> {
+    const result = await db.insert(memoryPrompts).values(prompt).returning();
+    return result[0];
+  }
+
+  // Sharing
+  async getMemoryByShareToken(token: string): Promise<Memory | undefined> {
+    const result = await db
+      .select()
+      .from(memories)
+      .where(and(
+        eq(memories.shareToken, token),
+        eq(memories.isPublic, true)
+      ))
+      .limit(1);
+    return result[0];
+  }
+
+  async generateShareToken(memoryId: string): Promise<string> {
+    const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    
+    await db.update(memories).set({
+      shareToken: token,
+      isPublic: true,
+      updatedAt: new Date(),
+    }).where(eq(memories.id, memoryId));
+    
+    return token;
+  }
+}
