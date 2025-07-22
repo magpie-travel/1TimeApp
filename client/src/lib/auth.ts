@@ -1,19 +1,36 @@
-// Firebase Auth stub - basic implementation
-export async function signInWithGoogle() {
-  // Placeholder for Google sign in
-  console.log("Google sign-in not implemented yet")
-}
+import { useState, useEffect } from 'react';
+import { auth, signInWithGoogle as firebaseSignIn, signOutUser, onAuthStateChange } from './firebase';
 
-export async function signOut() {
-  // Placeholder for sign out
-  console.log("Sign out not implemented yet")
-}
+export { signInWithGoogle, signOutUser as signOut } from './firebase';
 
 export function useAuth() {
+  const [user, setUser] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChange((firebaseUser) => {
+      if (firebaseUser) {
+        // Convert Firebase user to our user format
+        setUser({
+          id: firebaseUser.uid,
+          email: firebaseUser.email,
+          displayName: firebaseUser.displayName,
+          photoURL: firebaseUser.photoURL,
+          emailVerified: firebaseUser.emailVerified
+        });
+      } else {
+        setUser(null);
+      }
+      setIsLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
+
   return {
-    user: null,
-    isLoading: false,
-    signInWithGoogle,
-    signOut
-  }
+    user,
+    isLoading,
+    signInWithGoogle: firebaseSignIn,
+    signOut: signOutUser
+  };
 }

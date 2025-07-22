@@ -18,8 +18,7 @@ export default function Auth() {
         title: 'Welcome to 1time.ai!',
         description: 'You have successfully signed in.',
       });
-      // Redirect to main app
-      window.location.href = '/';
+      // Authentication state change will automatically handle routing
     } catch (error: any) {
       console.error('Sign in error:', error);
       toast({
