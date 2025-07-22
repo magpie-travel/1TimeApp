@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useAuth } from '@/lib/auth';
-import { useGeolocation } from '@/hooks/use-geolocation';
-import { useAudioRecording } from '@/hooks/use-audio-recording';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { FileUpload } from '@/components/file-upload';
-import { AudioPlayer } from '@/components/audio-player';
-import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '../lib/auth';
+import { useGeolocation } from '../hooks/use-geolocation';
+import { useAudioRecording } from '../hooks/use-audio-recording';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
+import { Textarea } from '../components/ui/textarea';
+import { Badge } from '../components/ui/badge';
+import { Separator } from '../components/ui/separator';
+import { FileUpload } from '../components/file-upload';
+import { AudioPlayer } from '../components/audio-player';
+import { useToast } from '../hooks/use-toast';
 import { useLocation } from 'wouter';
 import { ArrowLeft, Keyboard, Mic, Users, MapPin, Calendar, Heart, Camera, X, Image, Video, Paperclip, Play, Pause, Square, Loader2, FileText } from 'lucide-react';
-import { apiRequest } from '@/lib/queryClient';
+import { apiRequest } from '../lib/queryClient';
 import type { InsertMemory } from '@shared/schema';
 
 interface UploadedFile {

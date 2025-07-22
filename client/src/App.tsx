@@ -1,25 +1,24 @@
 import { Switch, Route, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { useAuth } from "@/lib/auth";
-import { useEffect } from "react";
+import { Toaster } from "./components/ui/toaster";
+import { TooltipProvider } from "./components/ui/tooltip";
+import { useAuth } from "./lib/auth";
 
 // Pages
-import Auth from "@/pages/auth";
-import Timeline from "@/pages/timeline";
-import CreateMemorySimple from "@/pages/create-memory-simple";
-import AudioRecording from "@/pages/audio-recording";
-import MediaInspiration from "@/pages/media-inspiration";
-import MemoryDetails from "@/pages/memory-details";
-import EditMemory from "@/pages/edit-memory";
-import Prompts from "@/pages/prompts";
-import Profile from "@/pages/profile";
-import Search from "@/pages/search";
-import SharedMemory from "@/pages/shared-memory";
-import SharedWithMe from "@/pages/shared-with-me";
-import NotFound from "@/pages/not-found";
+import Auth from "./pages/auth";
+import Timeline from "./pages/timeline";
+import CreateMemorySimple from "./pages/create-memory-simple";
+import AudioRecording from "./pages/audio-recording";
+import MediaInspiration from "./pages/media-inspiration";
+import MemoryDetails from "./pages/memory-details";
+import EditMemory from "./pages/edit-memory";
+import Prompts from "./pages/prompts";
+import Profile from "./pages/profile";
+import Search from "./pages/search";
+import SharedMemory from "./pages/shared-memory";
+import SharedWithMe from "./pages/shared-with-me";
+import NotFound from "./pages/not-found";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();

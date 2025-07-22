@@ -56,7 +56,8 @@ export function useAuth() {
       // User state will be updated by onAuthStateChange
       return result;
     } catch (error) {
-      setError(error.message);
+      const errorMessage = error instanceof Error ? error.message : 'Sign in failed';
+      setError(errorMessage);
       throw error;
     }
   };
@@ -66,7 +67,8 @@ export function useAuth() {
     try {
       await signOutUser();
     } catch (error) {
-      setError(error.message);
+      const errorMessage = error instanceof Error ? error.message : 'Sign out failed';
+      setError(errorMessage);
       throw error;
     }
   };

@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useAuth } from '@/lib/auth';
-import { BottomNavigation } from '@/components/bottom-navigation';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
-import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '../lib/auth';
+import { BottomNavigation } from '../components/bottom-navigation';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
+import { Separator } from '../components/ui/separator';
+import { useToast } from '../hooks/use-toast';
 import { useLocation } from 'wouter';
 import { User, Settings, Download, Trash2, LogOut, Edit2, Mail, Calendar, BarChart3 } from 'lucide-react';
-import { apiRequest } from '@/lib/queryClient';
+import { apiRequest } from '../lib/queryClient';
 import type { Memory } from '@shared/schema';
 
 export default function Profile() {

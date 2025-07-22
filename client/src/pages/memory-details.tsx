@@ -1,15 +1,15 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
-import { useAuth } from '@/lib/auth';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { AudioPlayer } from '@/components/audio-player';
-import { MemorySharing } from '@/components/memory-sharing';
-import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '../lib/auth';
+import { Card, CardContent } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { Badge } from '../components/ui/badge';
+import { AudioPlayer } from '../components/audio-player';
+import { MemorySharing } from '../components/memory-sharing';
+import { useToast } from '../hooks/use-toast';
 import { ArrowLeft, Share2, Edit, MoreHorizontal, Link, Mail, Download, FileText, MapPin, Calendar, Users, Mic } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
-import { apiRequest } from '@/lib/queryClient';
+import { apiRequest } from '../lib/queryClient';
 import { useState } from 'react';
 import type { Memory } from '@shared/schema';
 

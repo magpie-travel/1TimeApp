@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useAuth } from '@/lib/auth';
-import { useAudioRecording } from '@/hooks/use-audio-recording';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { AudioPlayer } from '@/components/audio-player';
-import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '../lib/auth';
+import { useAudioRecording } from '../hooks/use-audio-recording';
+import { Button } from '../components/ui/button';
+import { Card, CardContent } from '../components/ui/card';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
+import { AudioPlayer } from '../components/audio-player';
+import { useToast } from '../hooks/use-toast';
 import { useLocation } from 'wouter';
 import { ArrowLeft, Mic, Play, Pause, OctagonMinus, FileText, MapPin, Calendar } from 'lucide-react';
-import { apiRequest } from '@/lib/queryClient';
+import { apiRequest } from '../lib/queryClient';
 import type { InsertMemory } from '@shared/schema';
 
 export default function AudioRecording() {

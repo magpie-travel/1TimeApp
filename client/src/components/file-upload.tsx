@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
-import { useToast } from '@/hooks/use-toast';
+import { Button } from '../components/ui/button';
+import { Card, CardContent } from '../components/ui/card';
+import { Badge } from '../components/ui/badge';
+import { Progress } from '../components/ui/progress';
+import { useToast } from '../hooks/use-toast';
 import { Upload, X, Image, Video, FileText, Loader2 } from 'lucide-react';
 
 interface FileUploadProps {

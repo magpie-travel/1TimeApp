@@ -1,20 +1,20 @@
 import { formatDistanceToNow } from 'date-fns';
 import { MapPin, Calendar, Users, Mic, FileText, MoreHorizontal, Edit, Trash2, Share2, Image, Video } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '../components/ui/card';
+import { Badge } from '../components/ui/badge';
+import { Button } from '../components/ui/button';
 import { AudioPlayer } from './audio-player';
 import { Link, useLocation } from 'wouter';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiRequest } from '@/lib/queryClient';
-import { useToast } from '@/hooks/use-toast';
+import { apiRequest } from '../lib/queryClient';
+import { useToast } from '../hooks/use-toast';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '../components/ui/dropdown-menu';
 import type { Memory } from '@shared/schema';
 
 interface MemoryCardProps {

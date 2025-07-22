@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useAuth } from '@/lib/auth';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '../lib/auth';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { useToast } from '../hooks/use-toast';
 import { Brain, Sparkles } from 'lucide-react';
 
 export default function Auth() {
@@ -19,9 +19,10 @@ export default function Auth() {
         description: 'You have successfully signed in.',
       });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Sign in failed';
       toast({
         title: 'Sign in failed',
-        description: error.message,
+        description: errorMessage,
         variant: 'destructive',
       });
     } finally {

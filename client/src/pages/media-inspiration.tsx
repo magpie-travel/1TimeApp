@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useLocation } from 'wouter';
-import { FileUpload } from '@/components/file-upload';
-import { BottomNavigation } from '@/components/bottom-navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Textarea } from '@/components/ui/textarea';
-import { Badge } from '@/components/ui/badge';
-import { useAuth } from '@/lib/auth';
+import { FileUpload } from '../components/file-upload';
+import { BottomNavigation } from '../components/bottom-navigation';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Textarea } from '../components/ui/textarea';
+import { Badge } from '../components/ui/badge';
+import { useAuth } from '../lib/auth';
 import { ArrowLeft, Sparkles, Image, Video, Plus } from 'lucide-react';
 import { Link } from 'wouter';
 

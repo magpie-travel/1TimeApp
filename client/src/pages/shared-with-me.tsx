@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { MemoryCard } from '@/components/memory-card';
-import { BottomNavigation } from '@/components/bottom-navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
-import { useAuth } from '@/lib/auth';
+import { MemoryCard } from '../components/memory-card';
+import { BottomNavigation } from '../components/bottom-navigation';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Badge } from '../components/ui/badge';
+import { Skeleton } from '../components/ui/skeleton';
+import { useAuth } from '../lib/auth';
 import { Share2, ArrowLeft, Users } from 'lucide-react';
 import { Link } from 'wouter';
 import type { Memory } from '@shared/schema';
