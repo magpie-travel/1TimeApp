@@ -9,15 +9,18 @@ export function useAuth() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChange((firebaseUser) => {
+      console.log('Auth state changed:', firebaseUser ? 'User logged in' : 'User logged out', firebaseUser);
       if (firebaseUser) {
         // Convert Firebase user to our user format
-        setUser({
+        const userData = {
           id: firebaseUser.uid,
           email: firebaseUser.email,
           displayName: firebaseUser.displayName,
           photoURL: firebaseUser.photoURL,
           emailVerified: firebaseUser.emailVerified
-        });
+        };
+        console.log('Setting user data:', userData);
+        setUser(userData);
       } else {
         setUser(null);
       }

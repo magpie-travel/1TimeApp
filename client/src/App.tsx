@@ -21,6 +21,8 @@ function AuthenticatedApp() {
 
 function App() {
   const { user, isLoading } = useAuth();
+  
+  console.log('App render - user:', user, 'isLoading:', isLoading);
 
   if (isLoading) {
     return (
