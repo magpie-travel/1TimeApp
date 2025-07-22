@@ -230,10 +230,6 @@ export class MemStorage implements IStorage {
       isPublic: memory.isPublic || false,
       shareToken: memory.shareToken || null,
       attachments: memory.attachments || null,
-      imageUrl: memory.imageUrl || null,
-      videoUrl: memory.videoUrl || null,
-      title: memory.title || null,
-      visibility: memory.visibility || "private",
       createdAt: now,
       updatedAt: now,
     };
