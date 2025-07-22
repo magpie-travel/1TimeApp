@@ -19,9 +19,10 @@ export default function Auth() {
         description: 'You have successfully signed in.',
       });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Sign in failed';
       toast({
         title: 'Sign in failed',
-        description: error.message,
+        description: errorMessage,
         variant: 'destructive',
       });
     } finally {

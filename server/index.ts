@@ -1,6 +1,12 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import path from "path";
+
+// Fix working directory issue for Vite to find client files correctly
+if (process.cwd().endsWith('server')) {
+  process.chdir(path.resolve(process.cwd(), '..'));
+}
 
 const app = express();
 // Increase payload limits for image/video uploads (base64 encoded files can be large)

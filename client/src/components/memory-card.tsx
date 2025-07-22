@@ -3,7 +3,7 @@ import { MapPin, Calendar, Users, Mic, FileText, MoreHorizontal, Edit, Trash2, S
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { AudioPlayer } from './audio-player';
+import { AudioPlayer } from '@/components/audio-player';
 import { Link, useLocation } from 'wouter';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -28,9 +28,7 @@ export function MemoryCard({ memory }: MemoryCardProps) {
 
   const deleteMutation = useMutation({
     mutationFn: async (memoryId: string) => {
-      await apiRequest(`/api/memories/${memoryId}`, {
-        method: 'DELETE',
-      });
+      return await apiRequest('DELETE', `/api/memories/${memoryId}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/memories'] });
@@ -218,7 +216,7 @@ export function MemoryCard({ memory }: MemoryCardProps) {
                   src={memory.imageUrl} 
                   alt="Memory attachment" 
                   className="w-full max-h-80 object-cover cursor-pointer hover:opacity-95 transition-opacity"
-                  onClick={() => window.open(memory.imageUrl, '_blank')}
+                  onClick={() => memory.imageUrl && window.open(memory.imageUrl, '_blank')}
                   onError={(e) => {
                     console.error('Image failed to load:', memory.imageUrl);
                     e.currentTarget.style.display = 'none';
