@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { onAuthStateChange, signInWithGoogle as firebaseSignInWithGoogle, signOutUser } from "./firebase";
+import { onAuthStateChange, signInWithGoogle as firebaseSignInWithGoogle, signOutUser } from "@/lib/firebase";
 
 export interface AuthUser {
   id: string;
