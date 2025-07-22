@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
-import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
-import { Textarea } from "../components/ui/textarea";
-import { Badge } from "../components/ui/badge";
-import { useToast } from "../hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "../lib/auth";
-import { apiRequest } from "../lib/queryClient";
+import { useAuth } from "@/lib/auth";
+import { apiRequest } from "@/lib/queryClient";
 import { InsertMemory } from "@shared/schema";
-import { useAudioRecording } from "../hooks/use-audio-recording";
-import { useGeolocation } from "../hooks/use-geolocation";
+import { useAudioRecording } from "@/hooks/use-audio-recording";
+import { useGeolocation } from "@/hooks/use-geolocation";
 import {
   ArrowLeft,
   Image as ImageIcon,
