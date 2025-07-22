@@ -63,7 +63,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteMemory(id: string): Promise<boolean> {
     const result = await db.delete(memories).where(eq(memories.id, id));
-    return result.length > 0;
+    return result.rowCount > 0;
   }
 
   // Memory filtering
@@ -137,13 +137,10 @@ export class DatabaseStorage implements IStorage {
     const query = db.select().from(memoryPrompts).where(eq(memoryPrompts.isActive, true));
     
     if (category) {
-      const result = await db
-        .select()
-        .from(memoryPrompts)
-        .where(and(
-          eq(memoryPrompts.isActive, true),
-          eq(memoryPrompts.category, category)
-        ));
+      const result = await query.where(and(
+        eq(memoryPrompts.isActive, true),
+        eq(memoryPrompts.category, category)
+      ));
       return result;
     }
     
@@ -189,63 +186,5 @@ export class DatabaseStorage implements IStorage {
     }).where(eq(memories.id, memoryId));
     
     return token;
-  }
-
-  // Memory sharing methods to complete IStorage interface
-  async shareMemoryWithUser(memoryId: string, email: string, sharedByUserId: string, permission = 'view'): Promise<MemoryShare> {
-    const shareData: InsertMemoryShare = {
-      memoryId,
-      sharedWithEmail: email,
-      sharedByUserId,
-      permission,
-    };
-
-    const result = await db.insert(memoryShares).values(shareData).returning();
-    return result[0];
-  }
-
-  async getMemoryShares(memoryId: string): Promise<MemoryShare[]> {
-    const result = await db
-      .select()
-      .from(memoryShares)
-      .where(eq(memoryShares.memoryId, memoryId));
-    return result;
-  }
-
-  async getSharedMemoriesForUser(email: string): Promise<Memory[]> {
-    const shares = await db
-      .select()
-      .from(memoryShares)
-      .where(eq(memoryShares.sharedWithEmail, email));
-
-    if (shares.length === 0) return [];
-
-    const memoryIds = shares.map(share => share.memoryId);
-    const result = await db
-      .select()
-      .from(memories)
-      .where(inArray(memories.id, memoryIds))
-      .orderBy(desc(memories.date));
-
-    return result;
-  }
-
-  async revokeMemoryShare(shareId: string): Promise<boolean> {
-    const result = await db
-      .delete(memoryShares)
-      .where(eq(memoryShares.id, shareId));
-    return result.length > 0;
-  }
-
-  async updateMemoryVisibility(memoryId: string, visibility: string): Promise<Memory | undefined> {
-    const result = await db
-      .update(memories)
-      .set({ 
-        visibility,
-        updatedAt: new Date()
-      })
-      .where(eq(memories.id, memoryId))
-      .returning();
-    return result[0];
   }
 }

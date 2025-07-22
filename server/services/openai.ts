@@ -19,11 +19,11 @@ export async function transcribeAudio(audioBuffer: Buffer): Promise<{ text: stri
 
     return {
       text: transcription.text,
-      duration: undefined, // Duration not available in Whisper response
+      duration: transcription.duration,
     };
   } catch (error) {
     console.error("Error transcribing audio:", error);
-    throw new Error("Failed to transcribe audio: " + (error instanceof Error ? error.message : String(error)));
+    throw new Error("Failed to transcribe audio: " + error.message);
   }
 }
 
@@ -102,7 +102,7 @@ export async function generateSearchEmbedding(text: string): Promise<number[]> {
     return response.data[0].embedding;
   } catch (error) {
     console.error("Error generating embedding:", error);
-    throw new Error("Failed to generate embedding: " + (error instanceof Error ? error.message : String(error)));
+    throw new Error("Failed to generate embedding: " + error.message);
   }
 }
 
@@ -150,7 +150,7 @@ export async function semanticSearch(query: string, memories: any[]): Promise<{
       
   } catch (error) {
     console.error("Error in semantic search:", error);
-    throw new Error("Failed to perform semantic search: " + (error instanceof Error ? error.message : String(error)));
+    throw new Error("Failed to perform semantic search: " + error.message);
   }
 }
 
