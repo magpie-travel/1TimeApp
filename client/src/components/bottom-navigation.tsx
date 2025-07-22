@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Home, Search, Lightbulb, User, Share2 } from "lucide-react";
-import { cn } from "../lib/utils";
+import { cn } from "@/lib/utils";
 
 export function BottomNavigation() {
   const [location] = useLocation();
