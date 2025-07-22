@@ -1,0 +1,21 @@
+server/db-storage.ts(8,14): error TS2420: Class 'DatabaseStorage' incorrectly implements interface 'IStorage'.
+  Type 'DatabaseStorage' is missing the following properties from type 'IStorage': shareMemoryWithUser, getMemoryShares, getSharedMemoriesForUser, revokeMemoryShare, updateMemoryVisibility
+server/db-storage.ts(66,19): error TS2339: Property 'rowCount' does not exist on type 'RowList<never[]>'.
+server/db-storage.ts(140,34): error TS2339: Property 'where' does not exist on type 'Omit<PgSelectBase<"memory_prompts", { id: PgColumn<{ name: "id"; tableName: "memory_prompts"; dataType: "number"; columnType: "PgSerial"; data: number; driverParam: number; notNull: true; hasDefault: true; isPrimaryKey: true; ... 5 more ...; generated: undefined; }, {}, {}>; category: PgColumn<...>; prompt: PgColumn...'.
+server/init-db.ts(10,11): error TS2304: Cannot find name 'db'.
+server/init-db.ts(23,11): error TS2304: Cannot find name 'db'.
+server/init-db.ts(44,11): error TS2304: Cannot find name 'db'.
+server/init-db.ts(54,11): error TS2304: Cannot find name 'db'.
+server/init-db.ts(121,33): error TS2304: Cannot find name 'db'.
+server/init-db.ts(121,50): error TS2304: Cannot find name 'memoryPrompts'.
+server/init-db.ts(124,11): error TS2304: Cannot find name 'db'.
+server/init-db.ts(124,21): error TS2304: Cannot find name 'memoryPrompts'.
+server/routes.ts(64,16): error TS18046: 'error' is of type 'unknown'.
+server/routes.ts(248,64): error TS7006: Parameter 'attachment' implicitly has an 'any' type.
+server/services/openai.ts(22,31): error TS2339: Property 'duration' does not exist on type 'Transcription & { _request_id?: string | null | undefined; }'.
+server/services/openai.ts(26,54): error TS18046: 'error' is of type 'unknown'.
+server/services/openai.ts(105,56): error TS18046: 'error' is of type 'unknown'.
+server/services/openai.ts(153,61): error TS18046: 'error' is of type 'unknown'.
+server/storage.ts(217,11): error TS2739: Type '{ id: string; userId: string; type: string; content: string; transcript: string | null; audioUrl: string | null; audioDuration: number | null; people: string[] | null; location: string | null; ... 7 more ...; updatedAt: Date; }' is missing the following properties from type '{ date: Date; id: string; createdAt: Date; userId: string; type: string; title: string | null; content: string; transcript: string | null; audioUrl: string | null; audioDuration: number | null; ... 10 more ...; updatedAt: Date; }': title, imageUrl, videoUrl, visibility
+Error: Command "npm run vercel-build" exited with 2
+Exiting build container
