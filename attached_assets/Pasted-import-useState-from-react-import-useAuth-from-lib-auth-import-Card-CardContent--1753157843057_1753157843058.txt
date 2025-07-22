@@ -6,7 +6,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Brain, Sparkles } from 'lucide-react';
 
 export default function Auth() {
-  const { signInWithGoogle, isLoading } = useAuth();
+  const { signInWithGoogle, isLoading, error } = useAuth();
   const { toast } = useToast();
   const [isSigningIn, setIsSigningIn] = useState(false);
 
@@ -18,10 +18,10 @@ export default function Auth() {
         title: 'Welcome to 1time.ai!',
         description: 'You have successfully signed in.',
       });
-    } catch (error: any) {
+    } catch (error) {
       toast({
         title: 'Sign in failed',
-        description: error?.message || 'An error occurred',
+        description: error.message,
         variant: 'destructive',
       });
     } finally {
@@ -54,6 +54,11 @@ export default function Auth() {
           </CardHeader>
           
           <CardContent className="space-y-6">
+            {error && (
+              <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+              </div>
+            )}
 
             <Button 
               onClick={handleGoogleSignIn}
