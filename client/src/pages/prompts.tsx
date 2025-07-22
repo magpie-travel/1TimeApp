@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { BottomNavigation } from '../components/bottom-navigation';
-import { Button } from '../components/ui/button';
-import { Card, CardContent } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
-import { Skeleton } from '../components/ui/skeleton';
-import { useToast } from '../hooks/use-toast';
+import { BottomNavigation } from '@/components/bottom-navigation';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useToast } from '@/hooks/use-toast';
 import { useLocation } from 'wouter';
 import { Lightbulb, Sparkles } from 'lucide-react';
-import { apiRequest } from '../lib/queryClient';
+import { apiRequest } from '@/lib/queryClient';
 import type { MemoryPrompt } from '@shared/schema';
 
 export default function Prompts() {

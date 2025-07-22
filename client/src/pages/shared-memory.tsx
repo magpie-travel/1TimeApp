@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'wouter';
-import { Card, CardContent } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
-import { AudioPlayer } from '../components/audio-player';
-import { Button } from '../components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { AudioPlayer } from '@/components/audio-player';
+import { Button } from '@/components/ui/button';
 import { MapPin, Calendar, Users, Mic, FileText } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import type { Memory } from '@shared/schema';

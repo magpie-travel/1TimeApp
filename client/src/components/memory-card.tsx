@@ -3,7 +3,7 @@ import { MapPin, Calendar, Users, Mic, FileText, MoreHorizontal, Edit, Trash2, S
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { AudioPlayer } from './audio-player';
+import { AudioPlayer } from '@/components/audio-player';
 import { Link, useLocation } from 'wouter';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';

@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRoute, useLocation } from 'wouter';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Textarea } from '../components/ui/textarea';
-import { Label } from '../components/ui/label';
-import { Badge } from '../components/ui/badge';
-import { Skeleton } from '../components/ui/skeleton';
-import { FileUpload } from '../components/file-upload';
-import { AudioPlayer } from '../components/audio-player';
-import { useToast } from '../hooks/use-toast';
-import { apiRequest } from '../lib/queryClient';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
+import { FileUpload } from '@/components/file-upload';
+import { AudioPlayer } from '@/components/audio-player';
+import { useToast } from '@/hooks/use-toast';
+import { apiRequest } from '@/lib/queryClient';
 import { ArrowLeft, Save, Loader2, X, Plus } from 'lucide-react';
 import type { Memory, InsertMemory } from '@shared/schema';
 

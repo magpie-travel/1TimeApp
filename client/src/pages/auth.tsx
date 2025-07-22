@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useAuth } from '../lib/auth';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/button';
-import { useToast } from '../hooks/use-toast';
+import { useAuth } from '@/lib/auth';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 import { Brain, Sparkles } from 'lucide-react';
 
 export default function Auth() {
