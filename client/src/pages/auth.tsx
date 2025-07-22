@@ -1,27 +1,30 @@
 import { useState } from 'react';
-import { useAuth } from '@/lib/auth';
+import { signInWithGoogle } from '@/lib/firebase';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { Brain, Sparkles } from 'lucide-react';
 
 export default function Auth() {
-  const { signInWithGoogle, isLoading } = useAuth();
   const { toast } = useToast();
   const [isSigningIn, setIsSigningIn] = useState(false);
 
   const handleGoogleSignIn = async () => {
     setIsSigningIn(true);
     try {
-      await signInWithGoogle();
+      const result = await signInWithGoogle();
+      console.log('Sign in successful:', result.user);
       toast({
         title: 'Welcome to 1time.ai!',
         description: 'You have successfully signed in.',
       });
+      // Redirect to main app
+      window.location.href = '/';
     } catch (error: any) {
+      console.error('Sign in error:', error);
       toast({
         title: 'Sign in failed',
-        description: error?.message || 'An error occurred',
+        description: error?.message || 'An error occurred during sign in',
         variant: 'destructive',
       });
     } finally {
@@ -57,7 +60,7 @@ export default function Auth() {
 
             <Button 
               onClick={handleGoogleSignIn}
-              disabled={isSigningIn || isLoading}
+              disabled={isSigningIn}
               className="w-full h-12 text-lg"
               variant="outline"
             >
