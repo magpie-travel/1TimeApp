@@ -1,30 +1,27 @@
 import { useState } from 'react';
-import { signInWithGoogle } from '@/lib/firebase';
+import { useAuth } from '@/lib/auth';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { Brain, Sparkles } from 'lucide-react';
 
 export default function Auth() {
+  const { signInWithGoogle, isLoading, error } = useAuth();
   const { toast } = useToast();
   const [isSigningIn, setIsSigningIn] = useState(false);
 
   const handleGoogleSignIn = async () => {
     setIsSigningIn(true);
     try {
-      const result = await signInWithGoogle();
-      console.log('Sign in successful:', result.user);
+      await signInWithGoogle();
       toast({
         title: 'Welcome to 1time.ai!',
         description: 'You have successfully signed in.',
       });
-      // Redirect to main app
-      window.location.href = '/';
-    } catch (error: any) {
-      console.error('Sign in error:', error);
+    } catch (error) {
       toast({
         title: 'Sign in failed',
-        description: error?.message || 'An error occurred during sign in',
+        description: error.message,
         variant: 'destructive',
       });
     } finally {
@@ -57,10 +54,15 @@ export default function Auth() {
           </CardHeader>
           
           <CardContent className="space-y-6">
+            {error && (
+              <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+              </div>
+            )}
 
             <Button 
               onClick={handleGoogleSignIn}
-              disabled={isSigningIn}
+              disabled={isSigningIn || isLoading}
               className="w-full h-12 text-lg"
               variant="outline"
             >

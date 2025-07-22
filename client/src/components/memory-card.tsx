@@ -109,10 +109,6 @@ export function MemoryCard({ memory }: MemoryCardProps) {
       }).filter(Boolean)
     : [];
 
-  // Debug logging
-  console.log('Memory:', memory.id, 'Attachments:', memory.attachments);
-  console.log('Parsed attachments:', parsedAttachments);
-
   return (
     <Card className="memory-card">
       <CardContent className="p-4">
