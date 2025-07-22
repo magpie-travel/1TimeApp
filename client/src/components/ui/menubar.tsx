@@ -1,3 +1,4 @@
+import * as React from "react";
 "use client"
 
 import * as MenubarPrimitive from "@radix-ui/react-menubar"
