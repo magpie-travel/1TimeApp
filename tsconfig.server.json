@@ -11,12 +11,7 @@
     "strict": true,
     "resolveJsonModule": true,
     "declaration": false,
-    "sourceMap": false,
-    "baseUrl": ".",
-    "paths": {
-      "@shared/*": ["./shared/*"],
-      "@server/*": ["./server/*"]
-    }
+    "sourceMap": false
   },
   "include": [
     "server/**/*",
