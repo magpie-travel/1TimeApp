@@ -1,10 +1,11 @@
 {
   "version": 2,
+  "functions": {
+    "api/index.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
   "builds": [
-    {
-      "src": "dist/server/server/index.js",
-      "use": "@vercel/node"
-    },
     {
       "src": "package.json",
       "use": "@vercel/static-build",
@@ -16,11 +17,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "dist/server/server/index.js"
+      "dest": "/api/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "dist/public/$1"
+      "dest": "/dist/public/$1"
     }
   ],
   "env": {

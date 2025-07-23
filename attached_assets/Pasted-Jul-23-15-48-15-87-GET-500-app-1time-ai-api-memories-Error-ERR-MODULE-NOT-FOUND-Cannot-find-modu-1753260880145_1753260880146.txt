@@ -1,0 +1,24 @@
+Jul 23 15:48:15.87
+GET
+500
+app.1time.ai
+/api/memories
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/vite.config' imported from /var/task/server/vite.js at finalizeResolution (node:internal/modules/esm/resolve:281:11) at moduleResolve (node:internal/modules/esm/resolve:866:10) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND', url: 'file:///var/task/vite.config' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Jul 23 15:48:15.87
+GET
+500
+app.1time.ai
+/api/shared-memories
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/vite.config' imported from /var/task/server/vite.js at finalizeResolution (node:internal/modules/esm/resolve:281:11) at moduleResolve (node:internal/modules/esm/resolve:866:10) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND', url: 'file:///var/task/vite.config' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Jul 23 15:48:15.83
+POST
+500
+app.1time.ai
+/api/auth/register
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/vite.config' imported from /var/task/server/vite.js at finalizeResolution (node:internal/modules/esm/resolve:281:11) at moduleResolve (node:internal/modules/esm/resolve:866:10) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND', url: 'file:///var/task/vite.config' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Jul 23 15:48:15.34
+POST
+500
+app.1time.ai
+/api/auth/register
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/vite.config' imported from /var/task/server/vite.js
