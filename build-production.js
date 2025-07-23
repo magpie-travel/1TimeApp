@@ -58,18 +58,49 @@ export default defineConfig(async () => {
 
 fs.writeFileSync('dist/vite.config.js', productionViteConfig);
 
-// Fix the vite.config import in the compiled server file - ACTUAL STRUCTURE
-console.log('🔧 Fixing ES module imports...');
+// Fix the vite.config import by embedding config directly - BULLETPROOF SOLUTION
+console.log('🔧 Fixing ES module imports with embedded vite config...');
 const viteJsPath = 'dist/server/server/vite.js';  // Actual path where files are compiled
 if (fs.existsSync(viteJsPath)) {
   let content = fs.readFileSync(viteJsPath, 'utf8');
-  // Fix the import path - from dist/server/server/ it should go up two levels to reach vite.config.js
+  
+  // Create embedded vite config that doesn't need external import
+  const embeddedViteConfig = `{
+  plugins: [],
+  resolve: {
+    alias: {
+      "@": "client/src",
+      "@shared": "shared",
+      "@assets": "attached_assets",
+    },
+  },
+  root: "client",
+  build: {
+    outDir: "dist/public",
+    emptyOutDir: true,
+  },
+  server: {
+    fs: {
+      strict: true,
+      deny: ["**/.*"],
+    },
+  },
+}`;
+
+  // Replace the import statement and viteConfig usage
   content = content.replace(
-    /import viteConfig from ["']\.\.\/vite\.config["'];/g,
-    'import viteConfig from "../../vite.config.js";'
+    /import viteConfig from ["'][^"']+["'];/g,
+    `// Embedded vite config to avoid import issues\nconst viteConfig = ${embeddedViteConfig};`
   );
+  
+  // Fix the distPath in serveStatic function to point to correct location
+  content = content.replace(
+    /const distPath = path\.resolve\(import\.meta\.dirname, "public"\);/g,
+    'const distPath = path.resolve(import.meta.dirname, "..", "..", "public");'
+  );
+  
   fs.writeFileSync(viteJsPath, content);
-  console.log('✅ Fixed vite.config import path in dist/server/server/vite.js');
+  console.log('✅ Embedded vite config directly in dist/server/server/vite.js');
 }
 
 // Also check for any other missing .js extensions in server files
