@@ -4,7 +4,7 @@ import path from "path";
 import { type Server } from "http";
 import { nanoid } from "nanoid";
 
-function log(message: string, source = "express") {
+export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
