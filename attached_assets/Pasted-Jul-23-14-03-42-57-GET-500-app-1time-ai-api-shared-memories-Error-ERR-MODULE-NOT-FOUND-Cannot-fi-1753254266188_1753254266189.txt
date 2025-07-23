@@ -1,0 +1,48 @@
+Jul 23 14:03:42.57
+GET
+500
+app.1time.ai
+/api/shared-memories
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@server/routes' imported from /var/task/server/index.js at Object.getPackageJSONURL (node:internal/modules/package_json_reader:268:9) at packageResolve (node:internal/modules/esm/resolve:774:81) at moduleResolve (node:internal/modules/esm/resolve:860:18) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Jul 23 14:03:42.57
+GET
+500
+app.1time.ai
+/api/memories
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@server/routes' imported from /var/task/server/index.js at Object.getPackageJSONURL (node:internal/modules/package_json_reader:268:9) at packageResolve (node:internal/modules/esm/resolve:774:81) at moduleResolve (node:internal/modules/esm/resolve:860:18) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Jul 23 14:03:42.54
+POST
+500
+app.1time.ai
+/api/auth/register
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@server/routes' imported from /var/task/server/index.js at Object.getPackageJSONURL (node:internal/modules/package_json_reader:268:9) at packageResolve (node:internal/modules/esm/resolve:774:81) at moduleResolve (node:internal/modules/esm/resolve:860:18) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Jul 23 14:03:42.13
+POST
+500
+app.1time.ai
+/api/auth/register
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@server/routes' imported from /var/task/server/index.js at Object.getPackageJSONURL (node:internal/modules/package_json_reader:268:9) at packageResolve (node:internal/modules/esm/resolve:774:81) at moduleResolve (node:internal/modules/esm/resolve:860:18) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Jul 23 14:03:37.66
+GET
+500
+app.1time.ai
+/api/memories
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@server/routes' imported from /var/task/server/index.js at Object.getPackageJSONURL (node:internal/modules/package_json_reader:268:9) at packageResolve (node:internal/modules/esm/resolve:774:81) at moduleResolve (node:internal/modules/esm/resolve:860:18) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@server/routes' imported from /var/task/server/index.js at Object.getPackageJSONURL (node:internal/modules/package_json_reader:268:9) at packageResolve (node:internal/modules/esm/resolve:774:81) at moduleResolve (node:internal/modules/esm/resolve:860:18) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Jul 23 14:03:37.65
+GET
+500
+app.1time.ai
+/api/shared-memories
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@server/routes' imported from /var/task/server/index.js at Object.getPackageJSONURL (node:internal/modules/package_json_reader:268:9) at packageResolve (node:internal/modules/esm/resolve:774:81) at moduleResolve (node:internal/modules/esm/resolve:860:18) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@server/routes' imported from /var/task/server/index.js at Object.getPackageJSONURL (node:internal/modules/package_json_reader:268:9) at packageResolve (node:internal/modules/esm/resolve:774:81) at moduleResolve (node:internal/modules/esm/resolve:860:18) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Jul 23 14:03:37.62
+POST
+500
+app.1time.ai
+/api/auth/register
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@server/routes' imported from /var/task/server/index.js at Object.getPackageJSONURL (node:internal/modules/package_json_reader:268:9) at packageResolve (node:internal/modules/esm/resolve:774:81) at moduleResolve (node:internal/modules/esm/resolve:860:18) at moduleResolveWithNodePath (node:internal/modules/esm/resolve:990:14) at defaultResolve (node:internal/modules/esm/resolve:1033:79) at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12) at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25) at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38) at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38) at ModuleJob._link (node:internal/modules/esm/module_job:137:49) { code: 'ERR_MODULE_NOT_FOUND' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Jul 23 14:03:36.66
+POST
+500
+app.1time.ai
+/api/auth/register
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@server/routes' imported from /var/task/server/index.js at Ob
