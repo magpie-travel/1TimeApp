@@ -1,6 +1,6 @@
-// Database initialization - currently disabled
-// import { db } from "./db";
-// import { users, memories, memoryPrompts } from "@shared/schema";
+// Database initialization
+import { db } from "./db";
+import { users, memories, memoryPrompts } from "@shared/schema";
 
 export async function initializeDatabase() {
   try {
