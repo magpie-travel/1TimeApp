@@ -61,7 +61,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({
         status: "unhealthy",
         timestamp: new Date().toISOString(),
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Unknown error',
       });
     }
   });
@@ -245,7 +245,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Handle attachments properly - convert objects to JSON strings
       if (requestData.attachments && Array.isArray(requestData.attachments)) {
-        requestData.attachments = requestData.attachments.map((attachment) => {
+        requestData.attachments = requestData.attachments.map((attachment: any) => {
           if (typeof attachment === "object" && attachment !== null) {
             return JSON.stringify(attachment);
           }
