@@ -10,6 +10,7 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
+        "buildCommand": "node build-vercel.js",
         "distDir": "dist/public"
       }
     }
