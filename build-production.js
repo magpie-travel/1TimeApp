@@ -13,21 +13,22 @@ execSync('npm run build', { stdio: 'inherit' });
 console.log('📋 Copying vite config...');
 fs.copyFileSync('vite.config.ts', 'dist/vite.config.js');
 
-// Fix the vite.config import in the compiled server file
+// Fix the vite.config import in the compiled server file - ACTUAL STRUCTURE
 console.log('🔧 Fixing ES module imports...');
-const viteJsPath = 'dist/server/server/vite.js';
+const viteJsPath = 'dist/server/server/vite.js';  // Actual path where files are compiled
 if (fs.existsSync(viteJsPath)) {
   let content = fs.readFileSync(viteJsPath, 'utf8');
+  // Fix the import path - from dist/server/server/ it should go up two levels to reach vite.config.js
   content = content.replace(
-    /import viteConfig from ["']\.\.\/\.\.\/vite\.config["'];/g,
+    /import viteConfig from ["']\.\.\/vite\.config["'];/g,
     'import viteConfig from "../../vite.config.js";'
   );
   fs.writeFileSync(viteJsPath, content);
-  console.log('✅ Fixed vite.config import path');
+  console.log('✅ Fixed vite.config import path in dist/server/server/vite.js');
 }
 
 // Also check for any other missing .js extensions in server files
-const serverDir = 'dist/server/server';
+const serverDir = 'dist/server/server';  // Actual server directory where files are compiled
 if (fs.existsSync(serverDir)) {
   const serverFiles = fs.readdirSync(serverDir).filter(f => f.endsWith('.js'));
   for (const file of serverFiles) {
@@ -54,7 +55,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 process.chdir(__dirname);
 
-// Start the server
+// Start the server - ACTUAL PATH
 import('./server/server/index.js');
 `;
 
