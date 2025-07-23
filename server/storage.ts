@@ -11,7 +11,7 @@ import {
   type InsertMemoryPrompt,
   type MemoryShare,
   type InsertMemoryShare,
-} from "@shared/schema";
+} from "../shared/schema.js";
 import { eq, desc, and, or, ilike, inArray } from "drizzle-orm";
 
 export interface IStorage {

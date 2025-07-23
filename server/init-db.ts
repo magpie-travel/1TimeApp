@@ -1,6 +1,6 @@
 // Database initialization
 import { db } from "./db.js";
-import { users, memories, memoryPrompts } from "@shared/schema";
+import { users, memories, memoryPrompts } from "../shared/schema.js";
 
 export async function initializeDatabase() {
   try {

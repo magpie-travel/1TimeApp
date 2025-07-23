@@ -1,9 +1,9 @@
 // Database storage implementation
 import { eq, desc, like, and, inArray, between, sql } from "drizzle-orm";
 import { db } from "./db.js";
-import { users, memories, memoryPrompts, memoryShares } from "@shared/schema";
+import { users, memories, memoryPrompts, memoryShares } from "../shared/schema.js";
 import type { IStorage } from "./storage.js";
-import type { User, InsertUser, Memory, InsertMemory, MemoryPrompt, InsertMemoryPrompt, MemoryShare, InsertMemoryShare } from "@shared/schema";
+import type { User, InsertUser, Memory, InsertMemory, MemoryPrompt, InsertMemoryPrompt, MemoryShare, InsertMemoryShare } from "../shared/schema.js";
 
 export class DatabaseStorage implements IStorage {
   

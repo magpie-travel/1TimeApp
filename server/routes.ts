@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage.js";
-import { insertUserSchema, insertMemorySchema } from "@shared/schema";
+import { insertUserSchema, insertMemorySchema } from "../shared/schema.js";
 import {
   transcribeAudio,
   analyzeSentiment,
