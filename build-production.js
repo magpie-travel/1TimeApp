@@ -9,17 +9,40 @@ console.log('🔨 Building production version...');
 console.log('📦 Building client and server...');
 execSync('npm run build', { stdio: 'inherit' });
 
+// Copy vite.config.ts to dist as vite.config.js for production
+console.log('📋 Copying vite config...');
+fs.copyFileSync('vite.config.ts', 'dist/vite.config.js');
+
 // Fix the vite.config import in the compiled server file
 console.log('🔧 Fixing ES module imports...');
-const viteJsPath = 'dist/server/vite.js';
+const viteJsPath = 'dist/server/server/vite.js';
 if (fs.existsSync(viteJsPath)) {
   let content = fs.readFileSync(viteJsPath, 'utf8');
   content = content.replace(
-    'import viteConfig from "../vite.config";',
-    'import viteConfig from "../vite.config.js";'
+    /import viteConfig from ["']\.\.\/\.\.\/vite\.config["'];/g,
+    'import viteConfig from "../../vite.config.js";'
   );
   fs.writeFileSync(viteJsPath, content);
-  console.log('✅ Fixed vite.config import');
+  console.log('✅ Fixed vite.config import path');
+}
+
+// Also check for any other missing .js extensions in server files
+const serverDir = 'dist/server/server';
+if (fs.existsSync(serverDir)) {
+  const serverFiles = fs.readdirSync(serverDir).filter(f => f.endsWith('.js'));
+  for (const file of serverFiles) {
+    const filePath = path.join(serverDir, file);
+    let content = fs.readFileSync(filePath, 'utf8');
+    
+    // Fix relative imports missing .js extensions
+    content = content.replace(
+      /from ['"](\.\/.+?)['"](?<!\.js['"])/g,
+      'from "$1.js"'
+    );
+    
+    fs.writeFileSync(filePath, content);
+  }
+  console.log('✅ Fixed all ES module imports in server files');
 }
 
 // Create a production startup script
@@ -32,7 +55,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 process.chdir(__dirname);
 
 // Start the server
-import('./server/index.js');
+import('./server/server/index.js');
 `;
 
 fs.writeFileSync('dist/start.js', startScript);
