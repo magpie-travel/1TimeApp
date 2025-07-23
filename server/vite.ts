@@ -3,6 +3,8 @@ import fs from "fs";
 import path from "path";
 import { type Server } from "http";
 import { nanoid } from "nanoid";
+import { fileURLToPath } from "url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
