@@ -1,6 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes.js";
-import { setupVite, serveStatic, log } from "./vite.js";
+import { registerRoutes } from "@server/routes";
+import { setupVite, serveStatic, log } from "@server/vite";
 import path from "path";
 
 // Fix working directory issue for Vite to find client files correctly

@@ -1,5 +1,5 @@
-import { storage } from "../storage.js";
-import { generateMemoryPrompt } from "./openai.js";
+import { storage } from "@server/storage";
+import { generateMemoryPrompt } from "@server/services/openai";
 
 export async function getPromptsForCategory(category?: string) {
   return await storage.getMemoryPrompts(category);
