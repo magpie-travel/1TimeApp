@@ -9,9 +9,54 @@ console.log('🔨 Building production version...');
 console.log('📦 Building client and server...');
 execSync('npm run build', { stdio: 'inherit' });
 
-// Copy vite.config.ts to dist as vite.config.js for production
-console.log('📋 Copying vite config...');
-fs.copyFileSync('vite.config.ts', 'dist/vite.config.js');
+// Create a production-safe vite.config.js without top-level await
+console.log('📋 Creating production-safe vite config...');
+const productionViteConfig = `import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+
+export default defineConfig(async () => {
+  const plugins = [
+    react(),
+    runtimeErrorOverlay(),
+  ];
+
+  // Only add cartographer plugin in development with Replit
+  if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) {
+    try {
+      const { cartographer } = await import("@replit/vite-plugin-cartographer");
+      plugins.push(cartographer());
+    } catch (e) {
+      // Cartographer plugin not available, continue without it
+    }
+  }
+
+  return {
+    plugins,
+    resolve: {
+      alias: {
+        "@": path.resolve(import.meta.dirname, "client", "src"),
+        "@shared": path.resolve(import.meta.dirname, "shared"),
+        "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+      },
+    },
+    root: path.resolve(import.meta.dirname, "client"),
+    build: {
+      outDir: path.resolve(import.meta.dirname, "dist/public"),
+      emptyOutDir: true,
+    },
+    server: {
+      fs: {
+        strict: true,
+        deny: ["**/.*"],
+      },
+    },
+  };
+});
+`;
+
+fs.writeFileSync('dist/vite.config.js', productionViteConfig);
 
 // Fix the vite.config import in the compiled server file - ACTUAL STRUCTURE
 console.log('🔧 Fixing ES module imports...');

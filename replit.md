@@ -162,6 +162,8 @@ The application uses three main tables:
   - Server imports use .js extensions for proper ES module resolution in production
   - Created automated build script (`build-production.js`) to fix compiled import paths
   - Fixed critical vite.config import that was causing `/var/task/vite.config` errors
+  - **Top-level await fix**: Created production-safe vite.config.js without top-level await issues
+  - **Fixed .gitignore**: Removed problematic `vite.config.ts.*` pattern that could affect deployments
   - Production builds work correctly with proper module loading
   - API endpoints respond correctly in production environment
   - **VERIFIED**: ✅ No more `Cannot find module '/var/task/vite.config'` errors - CONFIRMED WORKING
