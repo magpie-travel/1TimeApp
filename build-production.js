@@ -69,14 +69,14 @@ if (fs.existsSync(viteJsPath)) {
   plugins: [],
   resolve: {
     alias: {
-      "@": "/client/src",
-      "@shared": "/shared",
-      "@assets": "/attached_assets",
+      "@": "client/src",
+      "@shared": "shared",
+      "@assets": "attached_assets",
     },
   },
-  root: "/client",
+  root: "client",
   build: {
-    outDir: "/dist/public",
+    outDir: "dist/public",
     emptyOutDir: true,
   },
   server: {
@@ -91,6 +91,12 @@ if (fs.existsSync(viteJsPath)) {
   content = content.replace(
     /import viteConfig from ["'][^"']+["'];/g,
     `// Embedded vite config to avoid import issues\nconst viteConfig = ${embeddedViteConfig};`
+  );
+  
+  // Fix the distPath in serveStatic function to point to correct location
+  content = content.replace(
+    /const distPath = path\.resolve\(import\.meta\.dirname, "public"\);/g,
+    'const distPath = path.resolve(import.meta.dirname, "..", "..", "public");'
   );
   
   fs.writeFileSync(viteJsPath, content);
