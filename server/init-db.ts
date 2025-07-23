@@ -1,5 +1,5 @@
 // Database initialization
-import { db } from "./db";
+import { db } from "@server/db";
 import { users, memories, memoryPrompts } from "@shared/schema";
 
 export async function initializeDatabase() {

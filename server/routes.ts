@@ -1,19 +1,19 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage } from "@server/storage";
 import { insertUserSchema, insertMemorySchema } from "@shared/schema";
 import {
   transcribeAudio,
   analyzeSentiment,
   semanticSearch,
   intelligentQueryExpansion,
-} from "./services/openai";
+} from "@server/services/openai";
 import {
   getPromptsForCategory,
   getRandomPrompt,
   generateAIPrompt,
   promptCategories,
-} from "./services/prompts";
+} from "@server/services/prompts";
 import multer from "multer";
 import { z } from "zod";
 
