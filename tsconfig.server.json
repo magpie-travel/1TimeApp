@@ -1,7 +1,6 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist/",
+    "outDir": "dist",
     "target": "ES2020",
     "module": "ESNext",
     "moduleResolution": "node",
@@ -11,12 +10,7 @@
     "strict": true,
     "resolveJsonModule": true,
     "declaration": false,
-    "sourceMap": false,
-    "baseUrl": ".",
-    "paths": {
-      "@shared/*": ["./shared/*"],
-      "@server/*": ["./server/*"]
-    }
+    "sourceMap": false
   },
   "include": ["server/**/*", "shared/**/*"],
   "exclude": ["node_modules", "dist", "client"]
