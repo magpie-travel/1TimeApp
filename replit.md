@@ -157,7 +157,12 @@ The application uses three main tables:
   - Created various build configurations (build-manual.js, build-final.js, build-railway.js)
   - Resolved Tailwind CSS and path resolution issues
   - Build process working locally but complex project structure causes deployment challenges
-- **Current Status**: App fully functional locally with clean codebase and successful builds
+- **Authentication Routing Fix (January 24, 2025)**: Added redirect logic for authenticated users
+  - Users with valid tokens accessing `/auth` are automatically redirected to home page
+  - Double protection: both PublicRoute wrapper and Auth component useEffect
+  - Loading state displays "Redirecting to your memories..." during redirect
+  - Prevents authenticated users from seeing auth page and potential errors
+- **Current Status**: App fully functional on Vercel with clean authentication flow
 - **ES Module Resolution Fix (January 23, 2025)**: ✅ COMPLETELY RESOLVED deployment module errors
   - Server imports use .js extensions for proper ES module resolution in production
   - Created automated build script (`build-production.js`) to fix compiled import paths
