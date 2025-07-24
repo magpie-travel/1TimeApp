@@ -113,6 +113,12 @@ function Router() {
         </ProtectedRoute>
       </Route>
 
+      <Route path="/test-404">
+        <div className="min-h-screen flex items-center justify-center">
+          <h1 className="text-2xl">Test 404 Route - This should show NotFound component!</h1>
+        </div>
+      </Route>
+
       <Route path="/">
         <ProtectedRoute>
           <Timeline />

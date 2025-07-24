@@ -4,6 +4,9 @@ import { AlertCircle, Home } from "lucide-react";
 import { Link } from "wouter";
 
 export default function NotFound() {
+  // Debug log for Vercel
+  console.log("NotFound component rendered - 404 page is working!");
+  
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 dark:bg-gray-900">
       <Card className="w-full max-w-md mx-4">
@@ -22,6 +25,9 @@ export default function NotFound() {
               Go Back Home
             </Button>
           </Link>
+          <div className="mt-4 text-xs text-gray-500">
+            React Router 404 - Not Vercel 404
+          </div>
         </CardContent>
       </Card>
     </div>
