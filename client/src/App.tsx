@@ -119,6 +119,7 @@ function Router() {
         </ProtectedRoute>
       </Route>
 
+      {/* NotFound route must be last */}
       <Route path="*">
         <NotFound />
       </Route>
