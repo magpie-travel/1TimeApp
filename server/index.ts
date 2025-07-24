@@ -61,6 +61,19 @@ async function createApp() {
   return app;
 }
 
+// For development - start server
+if (process.env.NODE_ENV === "development") {
+  createApp().then(app => {
+    const server = http.createServer(app);
+    const PORT = Number(process.env.PORT) || 5000;
+    
+    server.listen(PORT, "0.0.0.0", () => {
+      log(`Server running on http://0.0.0.0:${PORT}`);
+    });
+  });
+}
+
+// For Vercel - export handler
 const appPromise = createApp();
 
 export default async function handler(
