@@ -8,43 +8,40 @@ if (process.cwd().endsWith("server")) {
   process.chdir(path.resolve(process.cwd(), ".."));
 }
 
-export default async function createServer() {
+async function createApp() {
   const app = express();
 
+  // Body parsing
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 
+  // Logging middleware
   app.use((req, res, next) => {
     const start = Date.now();
-    const path = req.path;
-    let capturedJsonResponse: Record<string, any> | undefined = undefined;
+    const reqPath = req.path;
+    let capturedJson: unknown;
 
-    const originalResJson = res.json;
-    res.json = function (bodyJson, ...args) {
-      capturedJsonResponse = bodyJson;
-      return originalResJson.apply(res, [bodyJson, ...args]);
+    const origJson = res.json;
+    res.json = function (body, ...args) {
+      capturedJson = body;
+      return origJson.apply(this, [body, ...args]);
     };
 
     res.on("finish", () => {
-      const duration = Date.now() - start;
-      if (path.startsWith("/api")) {
-        let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-        if (capturedJsonResponse) {
-          logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+      if (reqPath.startsWith("/api")) {
+        const duration = Date.now() - start;
+        let line = `${req.method} ${reqPath} ${res.statusCode} in ${duration}ms`;
+        if (capturedJson !== undefined) {
+          const json = JSON.stringify(capturedJson);
+          line += ` :: ${json.length > 200 ? json.slice(0, 200) + "…" : json}`;
         }
-
-        if (logLine.length > 80) {
-          logLine = logLine.slice(0, 79) + "…";
-        }
-
-        log(logLine);
+        log(line);
       }
     });
 
     next();
   });
 
-  const server = http.createServer(app);
   await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -55,10 +52,21 @@ export default async function createServer() {
   });
 
   if (process.env.NODE_ENV === "development") {
+    const server = http.createServer(app);
     await setupVite(app, server);
   } else {
     serveStatic(app);
   }
 
-  return server;
+  return app;
+}
+
+const appPromise = createApp();
+
+export default async function handler(
+  req: Parameters<http.RequestListener>[0],
+  res: Parameters<http.RequestListener>[1],
+) {
+  const app = await appPromise;
+  return app(req, res);
 }
