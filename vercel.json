@@ -26,5 +26,5 @@
   "env": {
     "NODE_ENV": "production"
   },
-  "installCommand": "npm install"
+  "installCommand": "npm ci --omit=optional"
 }
