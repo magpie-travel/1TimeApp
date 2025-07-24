@@ -1,14 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/auth';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { Brain, Sparkles } from 'lucide-react';
+import { useLocation } from 'wouter';
 
 export default function Auth() {
-  const { signInWithGoogle, isLoading, error } = useAuth();
+  const { signInWithGoogle, isLoading, error, user } = useAuth();
   const { toast } = useToast();
   const [isSigningIn, setIsSigningIn] = useState(false);
+  const [, setLocation] = useLocation();
+
+  // Redirect if user is already authenticated
+  useEffect(() => {
+    if (!isLoading && user) {
+      setLocation('/');
+    }
+  }, [user, isLoading, setLocation]);
 
   const handleGoogleSignIn = async () => {
     setIsSigningIn(true);
@@ -18,6 +27,7 @@ export default function Auth() {
         title: 'Welcome to 1time.ai!',
         description: 'You have successfully signed in.',
       });
+      // Redirect will be handled by useEffect when user state updates
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Sign in failed';
       toast({
@@ -29,6 +39,18 @@ export default function Auth() {
       setIsSigningIn(false);
     }
   };
+
+  // Show loading spinner if user is being redirected
+  if (!isLoading && user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white mx-auto mb-4"></div>
+          <p className="text-white text-lg">Redirecting to your memories...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-4">
